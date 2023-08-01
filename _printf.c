@@ -72,6 +72,19 @@ int _printf(const char *format, ...)
 				_putchar('%');
 				char_num++;
 			}
+			else if (*format == 'S')
+			{
+				str = va_arg(ap, char *);
+				if (str == NULL)
+				{
+					_putstr("(null)");
+					char_num += 6;
+				}
+				else
+				{
+					_printstr(str, &char_num);
+				}
+			}
 			else if (*format == 'b')
 			{
 				num = va_arg(ap, unsigned int);
