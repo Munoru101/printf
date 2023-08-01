@@ -3,27 +3,37 @@
 /**
  * _putint - function to print an integer
  * @num: integer argument
- * Return: Nothing
+ * Return: Numbers printed
  */
-void _putint(int num)
+int _putint(int num)
 {
-	int div_value, tmp;
-
-	if (num < 0)
+	int char_num = 0, i;
+	char buffer[20];
+	
+	if (num == 0)
 	{
-		_putchar('-');
-		num = -num;
+		_putchar('0');
+		char_num++;
 	}
-	div_value = 1;
-	tmp = num;
-	while (tmp /= 10)
+	else
 	{
-		div_value *= 10;
+		i = 0;
+		if (num < 0)
+		{
+			_putchar('-');
+			char_num++;
+			num = -num;
+		}
+		while (num > 0)
+		{
+			buffer[i++] = '0' + (num % 10);
+			num /= 10;
+		}
+		while (i > 0)
+		{
+			_putchar(buffer[--i]);
+			char_num++;
+		}
 	}
-	while (div_value)
-	{
-		_putchar('0' + num / div_value);
-		num %= div_value;
-		div_value /= 10;
-	}
+	return (char_num);
 }
