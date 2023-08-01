@@ -7,33 +7,24 @@
  */
 int _putint(int num)
 {
-	int char_num = 0, i;
-	char buffer[20];
+	int char_num = 0;
+	unsigned int i;
 	
-	if (num == 0)
+	if (num < 0)
 	{
-		_putchar('0');
+		_putchar('-');
 		char_num++;
+		i = -num;
 	}
 	else
 	{
-		i = 0;
-		if (num < 0)
-		{
-			_putchar('-');
-			char_num++;
-			num = -num;
-		}
-		while (num > 0)
-		{
-			buffer[i++] = '0' + (num % 10);
-			num /= 10;
-		}
-		while (i > 0)
-		{
-			_putchar(buffer[--i]);
-			char_num++;
-		}
+		i = num;
 	}
+	if (i / 10)
+	{
+		char_num += _putint(i / 10);
+	}
+	_putchar((i % 10) + '0');
+	char_num++;
 	return (char_num);
 }
