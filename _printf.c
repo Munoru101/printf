@@ -56,6 +56,11 @@ int _printf(const char *format, ...)
 				_putchar('%');
 				char_num++;
 			}
+			else if (*format == 'b')
+			{
+				num = va_arg(ap, unsigned int);
+				char_num += _putbinary(num);
+			}
 			else
 			{
 				_putchar('%');

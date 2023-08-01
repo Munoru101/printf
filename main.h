@@ -3,5 +3,6 @@
 int _putchar(char c);
 void _putstr(const char *str);
 int _putint(int num);
+int _putbinary(unsigned int num);
 int _printf(const char *format, ...);
 #endif
