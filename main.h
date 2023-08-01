@@ -4,5 +4,8 @@ int _putchar(char c);
 void _putstr(const char *str);
 int _putint(int num);
 int _putbinary(unsigned int num);
+int _putuint(unsigned int num);
+int _putoctal(unsigned int num);
+int _puthex(unsigned int num, int uppercase);
 int _printf(const char *format, ...);
 #endif

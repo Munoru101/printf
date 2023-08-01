@@ -14,6 +14,7 @@ int _printf(const char *format, ...)
 	char c;
 	char *str;
 	int num;
+	unsigned int unum;
 
 	va_start(ap, format);
 	while ((c = *format) != '\0')
@@ -50,6 +51,21 @@ int _printf(const char *format, ...)
 			{
 				num = va_arg(ap, int);
 				char_num += _putint(num);
+			}
+			else if (*format == 'u')
+			{
+				unum = va_arg(ap, unsigned int);
+				char_num += _putuint(unum);
+			}
+			else if (*format == 'o')
+			{
+				unum = va_arg(ap, unsigned int);
+				char_num += _putoctal(unum);
+			}
+			else if (*format == 'x' || *format == 'X')
+			{
+				unum = va_arg(ap, unsigned int);
+				char_num += _puthex(unum, (*format == 'X'));
 			}
 			else if (*format == '%')
 			{
