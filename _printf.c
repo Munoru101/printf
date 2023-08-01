@@ -31,11 +31,19 @@ int _printf(const char *format, ...)
 			else if (*format == 's')
 			{
 				str = va_arg(ap, char *);
-				_putstr(str);
-				while (*str)
+				if (str == NULL)
 				{
-					char_num++;
-					str++;
+					_putstr("(null)");
+					char_num += 6;
+				}
+				else
+				{
+					_putstr(str);
+					while (*str)
+					{
+						char_num++;
+						str++;
+					}
 				}
 			}
 			else if (*format == 'd' || *format == 'i')
