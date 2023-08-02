@@ -13,7 +13,7 @@ int _printf(const char *format, ...)
 	int char_num = 0;
 	char c;
 	char *str;
-	int num;
+	int num, flag_plus = 0, flag_space = 0;
 	unsigned int unum;
 	void *ptr;
 
@@ -25,7 +25,19 @@ int _printf(const char *format, ...)
 			format++;
 			if (*format == '\0')
 				break;
-			else if (*format == 'c')
+			while (*format == '+' || *format == ' ')
+			{
+				if (*format == '+')
+				{
+					flag_plus = 1;
+				}
+				else if (*format == ' ')
+				{
+					flag_space = 1;
+				}
+				format++;
+			}
+			if (*format == 'c')
 			{
 				_putchar(va_arg(ap, int));
 				char_num++;
@@ -51,7 +63,7 @@ int _printf(const char *format, ...)
 			else if (*format == 'd' || *format == 'i')
 			{
 				num = va_arg(ap, int);
-				char_num += _putint(num);
+				char_num += _putint(num, flag_plus, flag_space);
 			}
 			else if (*format == 'u')
 			{
@@ -88,13 +100,13 @@ int _printf(const char *format, ...)
 				}
 				else
 				{
-					_printstr(str, &char_num);
+					_putstr(str);
 				}
 			}
 			else if (*format == 'b')
 			{
-				num = va_arg(ap, unsigned int);
-				char_num += _putbinary(num);
+				unum = va_arg(ap, unsigned int);
+				char_num += _putbinary(unum);
 			}
 			else
 			{

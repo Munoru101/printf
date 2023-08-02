@@ -2,7 +2,7 @@
 #define MAIN_H
 int _putchar(char c);
 void _putstr(const char *str);
-int _putint(int num);
+int _putint(int num, int flag_plus, int flag_space);
 int _putbinary(unsigned int num);
 int _putuint(unsigned int num);
 int _putoctal(unsigned int num);
