@@ -15,6 +15,7 @@ int _printf(const char *format, ...)
 	char *str;
 	int num;
 	unsigned int unum;
+	void *ptr;
 
 	va_start(ap, format);
 	while ((c = *format) != '\0')
@@ -66,6 +67,11 @@ int _printf(const char *format, ...)
 			{
 				unum = va_arg(ap, unsigned int);
 				char_num += _puthex(unum, (*format == 'X'));
+			}
+			else if (*format == 'p')
+			{
+				ptr = (void *)va_arg(ap, void *);
+				char_num += _putptr(ptr);
 			}
 			else if (*format == '%')
 			{
